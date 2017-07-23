@@ -238,7 +238,7 @@ void PrintProgressBar(float fStepTime, float fAccuTime, float progress)
 			else if (i == pos) std::cout << ">";
 			else std::cout << " ";
 		}
-		std::cout << "] " << int(progress * 100.0) << " %\r";
+		std::cout << "] " << int(progress * 100.0) << " %         \r";
 		std::cout.flush();
 
 		//progress += 0.16; // for demonstration only
