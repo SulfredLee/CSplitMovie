@@ -227,12 +227,13 @@ void PrintProgressBar(float fStepTime, float fAccuTime, float progress)
 {
 	//while (progress < 1.0)
 	//{
-		int barWidth = 70;
+		int barWidth = 50;
 
 		std::cout << "One minute movie used:" << fStepTime;
 		std::cout << " Accumulated used:" << fAccuTime;
+		std::cout << " Time left:" << fStepTime * (1 - progress) * 100;
 		std::cout << " [";
-		int pos = barWidth * progress;
+		int pos = static_cast<int>(barWidth * progress);
 		for (int i = 0; i < barWidth; ++i) {
 			if (i < pos) std::cout << "=";
 			else if (i == pos) std::cout << ">";
@@ -267,7 +268,7 @@ void ProcessWholeMovie(){
 			//	<< "Processed " << curFrame / movieStat.totalFrames << "\n";
 			PrintProgressBar(float(clock() - c_start) / CLOCKS_PER_SEC,
 				float(clock() - first_start) / CLOCKS_PER_SEC,
-				curFrame / movieStat.totalFrames);
+				static_cast<float>(curFrame / movieStat.totalFrames));
 			c_start = std::clock();
 		}
 	}
